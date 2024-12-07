@@ -11,14 +11,19 @@ def count_servers(arr):
     idx_excpt_300 = cnt300
 
     # 제한 조건에 따라 처리
-    for idx in range(len(arr)-1, -1, -1):
+    # for문은 300 끼리 연산 제외하고 처리하는 것.
+    for idx in range(len(arr)-1, cnt300-1, -1):
         if (600 < arr[idx] <= 900):
             cnt +=1
-        elif (300 < arr[idx] <= 600):
-            if (idx_excpt_300 == idx):
+        elif (arr[idx] == 600):
+            if (cnt300 > 0):
+                cnt300 -=1
+            cnt +=1
+        elif (300 < arr[idx] < 600):
+            if (cnt300 == 0 and idx_excpt_300 == idx): #!
                 cnt+=1
                 break
-            if (arr[idx_excpt_300] + arr[idx] <= 900):
+            elif (idx_excpt_300 != idx and arr[idx_excpt_300] + arr[idx] <= 900):
                 cnt +=1
                 idx_excpt_300 += 1
             elif (300 + arr[idx] <= 900):
@@ -26,12 +31,16 @@ def count_servers(arr):
                 cnt +=1
             else:
                 cnt +=1
-        else: # arr[idx] == 300
-            # 3개가 1묶음
-            cnt += (cnt300+2) // 3
+        # else: # arr[idx] == 300
+        #     # 3개가 1묶음
+        #     cnt += (cnt300+2) // 3
         
-        if (idx_excpt_300 > idx):
+        if (idx_excpt_300 > idx-1):
             break
+    
+    if (cnt300 > 0):
+        cnt += (cnt300+2) // 3
+    
     return cnt
 
 T = int(input()) # test case count
