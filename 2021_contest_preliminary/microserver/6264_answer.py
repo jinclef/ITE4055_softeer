@@ -32,18 +32,15 @@ for i in range(t):
     # 301~600: 양극단끼리 짝을 이루면 된다.
     while (start_idx < end_idx):
         if (task[start_idx] + task[end_idx] <= 900):
-            servers +=1
             start_idx +=1
-            end_idx -=1
         # end_idx 의 경우 자기랑 같이 짝을 이뤄줄 남은 300을 찾는다.
         elif (num300 > 0):
-            servers +=1
-            end_idx -=1
             num300 -=1
         # 300도 없으면 그냥 혼자 들어간다.
         else:
-            servers +=1
-            end_idx -=1
+            pass
+        servers +=1
+        end_idx -=1
     
     # 짝을 맞춰주고 하나가 남은 경우 서버 하나 할당해주기.
     if (start_idx == end_idx):
