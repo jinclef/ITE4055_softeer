@@ -52,7 +52,7 @@ for i in range (T):
     memarr = list(map(int, input().split())) # 300 300 300
     print_arr.append(count_servers(memarr))
 
-print("\n")
+#print("\n")
 
 for cnt in print_arr:
     print(cnt)
