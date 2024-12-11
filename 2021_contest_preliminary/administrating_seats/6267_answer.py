@@ -1,6 +1,8 @@
+import sys
+
 n,m,q = map(int, input().split())
 ID = [0] * (10**4+1) # 0: notIn, 1: Out, [x,y]
-table = [[0]*(m+2) for _ in range(n+1)] # 0: out, 1: in # out of range 유의하기 위해 m+1 대신 m+2
+table = [[0]*(m+2) for _ in range(n+2)] # 0: out, 1: in # out of range 유의하기 위해 m+1 대신 m+2
 # print(table)
 
 def nearest(x,y):
@@ -38,7 +40,8 @@ for i in range(q):
     if (inOut == "In"):
         if ID[pid] == 0:
             res = assign(pid)
-            if res: print(f"{pid} gets the seat ({ID[pid][0]}, {ID[pid][1]})")
+            if res:
+                print(f"{pid} gets the seat ({ID[pid][0]}, {ID[pid][1]}).")
             else:
                 print("There are no more seats.")
         elif ID[pid] == 1:
@@ -51,7 +54,7 @@ for i in range(q):
         elif ID[pid] == 1: # 이미 먹음
             print(f"{pid} already left seat.")
         else: # 먹는 중
-            print(f"{pid} leaves from the seat ({ID[pid][0]}, {ID[pid][1]})")
+            print(f"{pid} leaves from the seat ({ID[pid][0]}, {ID[pid][1]}).")
             table[ID[pid][0]][ID[pid][1]] = 0
             ID[pid] = 1
 
