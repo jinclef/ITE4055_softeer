@@ -32,7 +32,8 @@ Q = int(input())
 
 for q in range(Q):
     i, j, c = map(int, input().split())
-    change_color(i-1,j-1,c)
+    if color_grid[i-1][j-1] != c:
+        change_color(i-1,j-1,c)
 
 
 for h in range(H):
