@@ -19,7 +19,7 @@ def dfs2(current, parent):
         child = node[current][i][0]
         weight = node[current][i][1]
         if child != parent:
-            # distSum[child] = distSum[current] - weight*(subtreeSize[child]) + weight*(N-subtreeSize[child])
+            # distSum[child] = distSum[current] - weight*(subtreeSize[child]) + weight*(N-subtreeSize[child]) # 이렇게 하면 시간초과 남
             distSum[child] = distSum[current] + weight*(N-2*subtreeSize[child])
             dfs2(child, current) # top-down
 
