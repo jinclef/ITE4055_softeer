@@ -23,10 +23,11 @@ def calculateNeighbor(rnd): # neighbor 가 없으면 dfs 돌 필요 없으니까
     hasNeighbor = [[0 for _ in range(n)] for _ in range(n)]
     for x in range(n):
         for y in range(n):
-            if x<=n-1 and garage[rnd][x][y] == garage[rnd][x+1][y]:
+            if x<n-1 and garage[rnd][x][y] == garage[rnd][x+1][y]:
                 hasNeighbor[x][y] = hasNeighbor[x+1][y] = 1
-            if y<=n-1 and garage[rnd][x][y] == garage[rnd][x][y+1]:
+            if y<n-1 and garage[rnd][x][y] == garage[rnd][x][y+1]:
                 hasNeighbor[x][y] = hasNeighbor[x][y+1] = 1
+    return hasNeighbor
 
 def refill(rnd):
     for x in range(n):
@@ -55,21 +56,22 @@ def simulate(rnd, total):
                 count, area = 1,1
                 visit[x][y] = True
             else:
-                neighborList = []
-                count,left,right,bottom,top, neighborList = dfs(rnd, count, x, y, visit, left, right, bottom, top, neighborList)
+                neighbor = []
+                count,left,right,bottom,top, neighbor = dfs(rnd, count, x, y, visit, left, right, bottom, top, neighbor)
                 area = (right-left+1)*(top-bottom+1)
-                newTotal = total + area + count
+            
+            newTotal = total + area + count
 
-                if (rnd == 2):
-                    if largest < newTotal:
-                        largest = newTotal
-                else:
-                    remove(rnd, neighborList)
-                    refill(rnd)
-                    simulate(rnd+1, newTotal)
+            if (rnd == 2):
+                if largest < newTotal:
+                    largest = newTotal
+            else:
+                remove(rnd, neighbor)
+                refill(rnd)
+                simulate(rnd+1, newTotal)
 n = int(input())
 
-garage =[[[] for _ in range(n)] for _ in range(n)] # garage[0] = 1회차 [1] 2회차 [2] 3회차 게임
+garage =[[[] for _ in range(n)] for _ in range(3)] # garage[0] = 1회차 [1] 2회차 [2] 3회차 게임
 for _ in range(3*n):
     temp = list(map(int, input().split()))
     for i in range(n):
