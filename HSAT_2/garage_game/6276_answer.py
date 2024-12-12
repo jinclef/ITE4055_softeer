@@ -81,4 +81,5 @@ for i in range(n): # 0 이 밑인게 나아서..
 dx = [0,1,0,-1]
 dy = [1,0,-1,0]
 largest = 0 # 3번 했을 때 얻을 수 있는 가장 큰 점수
+simulate(0,0)
 print(largest)
