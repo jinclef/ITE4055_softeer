@@ -1,3 +1,6 @@
+dx = [-1,0,1,0]
+dy = [0,-1,0,1]
+
 def findDirection(x,y):
     count = 0
     for i in range(4):
@@ -44,8 +47,6 @@ matrix = [list(input()) for _ in range(H)]
 
 x,y,dir = findStart(matrix)
 directionMark = ['^', '<', 'v', '>']
-dx = [-1,0,1,0]
-dy = [0,-1,0,1]
 
 print(x+1, y+1)
 print(directionMark[dir])
