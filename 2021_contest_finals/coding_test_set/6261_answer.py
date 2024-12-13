@@ -51,4 +51,4 @@ for i in range(T):
         C[i] = temp[2*i]
         D[i] = temp[2*i+1]
     C[N-1] = temp[2*(N-1)]
-    bSearch(0, 2*(10**12))
+    print(bSearch(0, 2*(10**12)))
