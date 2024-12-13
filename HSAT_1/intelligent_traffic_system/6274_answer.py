@@ -64,3 +64,11 @@ for time in range(t):
                         update(time, row, col, inDir, outDir, junction, junction2)
                     junction[row][col][inDir] = 0 # 차가 지나갔으니 없음.
     junction, junction2 = junction2, junction
+
+count = 0
+for row in range(n):
+    for col in range(n):
+        if visit[row][col] ==1:
+            count +=1
+        
+print(count)
